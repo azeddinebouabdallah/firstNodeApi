@@ -14,6 +14,22 @@ let WishList = require('./model/whishList');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
 
+// Create the API
+// Create new product
+app.post('/product', function(req, res){
+    // Or do new Product(req.body);
+    var product = new Product();
+    product.title = req.body.title;
+    product.price = req.body.price;
+    product.likes = 0;
+    product.save(function(err, savedProduct){
+        if (err) {
+            res.status(500).send({error: "There was an error in saving data"});
+        }else {
+            res.status(200).send(savedProduct);
+        }
+    });
+});
 
 // Run server on port 3000 
 app.listen(3000, function(){

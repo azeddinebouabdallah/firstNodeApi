@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
 let product  = new Schema({
     title: String,
     price: Number, 
-    likes: Number
+    likes: {type: Number, default: 0}
 });
 
 // Export module  = mongoose model (NameOfModel , Schema)
